@@ -3,9 +3,11 @@
 #include <unistd.h>
 using namespace std;
 #define ll long long 
-#define NUM_THREADS 8
+//#define NUM_THREADS 2
 #define maxn 1200000
 #define _step (ll)(maxn/NUM_THREADS)
+ll mang_so_luong_luong[5]={1,2,4,6,8};
+ll NUM_THREADS;
 struct boba{
 	ll a;
 	ll b;
@@ -28,6 +30,9 @@ int main(){
 //	printf("\n");
 //	for(ll j=0;j<5;j++) printf("%lld ",mang[j].b);
 //	printf("\n");
+	for(ll z=1;z<=5;z++){
+	printf("Voi so luong luong la: %lld\n",mang_so_luong_luong[z-1]);
+	NUM_THREADS = mang_so_luong_luong[z-1];
 	pthread_t threads[NUM_THREADS];
 	ll rc;
 	ll i;
@@ -42,9 +47,11 @@ int main(){
 		pthread_join(threads[i],NULL);
 	}
 //	sleep(1);
-	for(ll k=0;k<maxn;k++) printf("%lld ",&mang[k].c);
+	for(ll k=0;k<maxn;k++) printf("%lld ",mang[k].c);
 	printf("\n");
 	cout<<"Time : "<<clock()*1000/CLOCKS_PER_SEC<<"ms\n";
+	cout<<"------------------------\n";
+	}
 	pthread_exit(NULL);
 	return 0;
 }
